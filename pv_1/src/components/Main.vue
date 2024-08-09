@@ -4,7 +4,7 @@
     <div>
       <Menu />
     </div>
-    <div>
+    <div style="flex: 1">
       <div class="m-4"> <!-- Added m-4 for margin -->
         <div class="text-center mb-6">
           <h1 class="text-2xl font-bold mb-4">Gemlogin Mini-App Store</h1>
@@ -27,9 +27,9 @@
           <select v-model="sortOption"
             class="py-2 px-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
             <option disabled value="">Sort by</option>
-            <option value="name">Name</option>
-            <option value="date">Date</option>
-            <option value="popularity">Popularity</option>
+            <option value="name">Lastest</option>
+            <option value="date">Popular</option>
+            <option value="popularity">Oldest</option>
           </select>
 
           <!-- Reset Button -->

@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed left-0 top-0 h-screen p-4 m-4 bg-white w-64 rounded-lg"> <!-- Added m-4 for margin -->
+  <div class="fixed left-0 top-0 p-4 m-4 bg-white w-64 rounded-lg full-height"> <!-- Added m-4 for margin -->
     <div class="rounded-lg p-4">
       <h2 class="text-lg font-bold mb-4">Category</h2>
       <div class="flex flex-col space-y-2">
@@ -48,4 +48,7 @@ export default {
 .category-btn {
   transition: background-color 0.3s, color 0.3s;
 }
+.full-height {
+    height: calc(100vh - 2rem); /* Adjusts for padding/margin */
+  }
 </style>

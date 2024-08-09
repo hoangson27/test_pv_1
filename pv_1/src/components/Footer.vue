@@ -1,31 +1,37 @@
 <template>
-  <div class="p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white w-full mx-4 my-6">
-    <div class="flex items-center justify-center space-x-4 mb-4">
-      <select id="data-count" v-model="rowsPerPage" class="border border-gray-300 rounded px-2 py-1">
-        <option v-for="option in rowsOptions" :key="option" :value="option">
-          {{ option }}/Page
-        </option>
-      </select>
-      <div class="flex items-center space-x-2">
-        <button :disabled="currentPage === 1" @click="previousPage"
-          class="px-2 py-2 border border-gray-300 rounded-md disabled:opacity-50">
-          &lt;
-        </button>
-        <button v-for="page in visiblePages" :key="page" :class="[
-          'page-btn',
-          currentPage === page
-            ? 'bg-blue-500 text-white'
-            : 'bg-gray-200 text-gray-800',
-          'w-10 h-10 flex items-center justify-center rounded-md'
-        ]" @click="goToPage(page)">
-          {{ page }}
-        </button>
-        <button :disabled="currentPage === totalPages" @click="nextPage"
-          class="px-2 py-2 border border-gray-300 rounded-md disabled:opacity-50">
-          &gt;
-        </button>
-      </div>
+  <div class="p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white w-full mx-2 my-4 pt-2.5 pb-2.5">
+    <div class="flex items-center justify-center space-x-4  ">
+  <!-- Reduced m-1 for smaller margin -->
+  <select id="data-count" v-model="rowsPerPage" class="border border-gray-300 rounded px-2 py-1 m-1">
+    <option v-for="option in rowsOptions" :key="option" :value="option">
+      {{ option }}/Page
+    </option>
+  </select>
+  <div class="flex items-center space-x-2">
+    <!-- Reduced m-1 for smaller margin -->
+    <button :disabled="currentPage === 1" @click="previousPage"
+      class="px-2 py-2 border border-gray-300 rounded-md disabled:opacity-50 m-1">
+      &lt;
+    </button>
+    <div class="flex space-x-1 m-1">
+      <button v-for="page in visiblePages" :key="page" :class="[
+        'page-btn',
+        currentPage === page
+          ? 'bg-blue-500 text-white'
+          : 'bg-gray-200 text-gray-800',
+        'w-10 h-10 flex items-center justify-center rounded-md'
+      ]" @click="goToPage(page)">
+        {{ page }}
+      </button>
     </div>
+    <!-- Reduced m-1 for smaller margin -->
+    <button :disabled="currentPage === totalPages" @click="nextPage"
+      class="px-2 py-2 border border-gray-300 rounded-md disabled:opacity-50 m-1">
+      &gt;
+    </button>
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -35,7 +41,7 @@ export default {
     return {
       rowsPerPage: 10,
       currentPage: 1,
-      totalRows: 100, // Giả định tổng số dòng dữ liệu
+      totalRows: 100, // Assumed total number of data rows
       rowsOptions: [5, 10, 20, 50, 100],
     };
   },
@@ -47,7 +53,7 @@ export default {
       let startPage = Math.max(1, this.currentPage - 1);
       let endPage = Math.min(this.totalPages, this.currentPage + 1);
 
-      // Đảm bảo luôn hiển thị 3 trang
+      // Ensure always showing 3 pages
       if (endPage - startPage < 2) {
         endPage = Math.min(startPage + 2, this.totalPages);
         startPage = Math.max(endPage - 2, 1);
@@ -76,7 +82,7 @@ export default {
   },
   watch: {
     rowsPerPage() {
-      this.currentPage = 1; // Reset lại trang hiện tại khi thay đổi số dòng mỗi trang
+      this.currentPage = 1; // Reset the current page when changing rows per page
     },
   },
 };
